@@ -23,5 +23,20 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "sass": "^1.58.3",
     "vite": "^4.1.0"
-  }
+  },
+  "description": "This package is a video player for ([vue 3](https://vuejs.org/)).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moelsohagy/videoplayer-vuejs.git"
+  },
+  "keywords": [
+    "Video",
+    "Player"
+  ],
+  "author": "Mohamed ElSohagy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moelsohagy/videoplayer-vuejs/issues"
+  },
+  "homepage": "https://github.com/moelsohagy/videoplayer-vuejs#readme"
 }
