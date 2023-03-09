@@ -1,0 +1,27 @@
+{
+  "name": "videoplayer-vuejs",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/videoplayer-vuejs.umd.js",
+  "module": "./dist/videoplayer-vuejs.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/videoplayer-vuejs.es.js",
+      "require": "./dist/videoplayer-vuejs.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "sass": "^1.58.3",
+    "vite": "^4.1.0"
+  }
+}

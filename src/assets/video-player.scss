@@ -1,0 +1,209 @@
+$min-width-mobile-sm: 375px;
+$min-width-mobile: 550px;
+$min-width-tablet: 768px;
+$min-width-labtop: 996px;
+$min-width-labtop-lg: 1250px;
+$min-width-labtop-xl: 1550px;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.videoplayer-vuejs-container {
+  --main-color: #2289ff;
+  direction: ltr;
+  text-align: left;
+  font-family: sans-serif;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  // min-width: 70%;
+  // max-width: 100%;
+  // min-height: 50vh;
+  max-height: 70vh;
+  aspect-ratio: 16/9;
+  position: relative;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  &.fullscreen {
+    max-width: 100%;
+    width: 100%;
+  }
+  &.paused,
+  &:hover {
+    .wrapper {
+      bottom: 0px;
+      opacity: 1;
+      pointer-events: auto;
+      transition: all 0.1s ease;
+    }
+  }
+  .wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s 1s ease;
+    &::before {
+      content: "";
+      bottom: 0;
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: calc(100% + 35px);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    }
+
+    .video-timeline {
+      --video-timeline-transition: height 0.2s ease;
+      height: 7px;
+      width: 100%;
+      cursor: pointer;
+      transition: var(--video-timeline-transition);
+      &:hover {
+        height: 8px;
+        .progress-area {
+          height: 6px;
+        }
+      }
+      .progress-area {
+        --progress-width: 0%;
+        height: 3px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.6);
+        transition: var(--video-timeline-transition);
+        span {
+          position: absolute;
+          left: var(--progress-width);
+          top: -25px;
+          transform: translateX(-50%);
+          font-size: 13px;
+        }
+        .progress-bar {
+          width: var(--progress-width);
+          height: 100%;
+          background: var(--main-color);
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            height: 13px;
+            width: 13px;
+            transform: translateY(-50%);
+            background: inherit;
+            border-radius: 50%;
+          }
+        }
+        span,
+        .progress-bar::before {
+          display: none;
+        }
+      }
+      &:hover {
+        .progress-area {
+          span,
+          .progress-bar::before {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .video-controls,
+    .video-controls .options,
+    .video-controls .options .video-timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-controls {
+      padding: 5px 20px 10px;
+      .options {
+        width: 100%;
+        &:first-child {
+          justify-content: flex-start;
+        }
+        &:last-child {
+          justify-content: flex-end;
+        }
+        button {
+          width: 40px;
+          height: 40px;
+          border: none;
+          font-size: 18px;
+          background: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 20px;
+          }
+        }
+        input {
+          height: 4px;
+          max-width: 75px;
+        }
+        .video-timer {
+          font-size: 11px;
+          color: #efefef;
+          margin-left: 15px;
+          user-select: none;
+          @media (min-width: #{$min-width-labtop}) {
+            font-size: 14px;
+          }
+        }
+        .separator {
+          margin: 0 5px;
+        }
+
+        .options-content {
+          position: relative;
+          .options-item {
+            position: absolute;
+            color: #000;
+            background: #fff;
+            bottom: 40px;
+            left: -40px;
+            width: 95px;
+            list-style: none;
+            box-shadow: 2px 2px 6px #fff5;
+            border-radius: 4px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.13s ease;
+            &.opened {
+              opacity: 1;
+              pointer-events: auto;
+            }
+            li {
+              font-size: 14px;
+              padding: 3px 3px 3px 10px;
+              cursor: pointer;
+              &.active {
+                color: #fff;
+                background: var(--main-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  video {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    width: -moz-available;
+    height: -moz-available;
+    box-shadow: 2px 4px 8px #ccc;
+    cursor: pointer;
+  }
+}
